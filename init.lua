@@ -302,19 +302,55 @@ require('lazy').setup({
   --     -- You can configure highlights by doing something like:
   --   end,
   -- },
+  -- {
+  --   'catppuccin/nvim',
+  --   name = 'catppuccin',
+  --   priority = 1000,
+  --   lazy = false,
+  --   init = function()
+  --     -- Load the colorscheme here.
+  --     -- Like many other themes, this one has different styles, and you could load
+  --     -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+  --     -- vim.cmd.colorscheme 'moonfly'
+  --     vim.opt.background = 'dark' -- set this to dark or light
+  --     vim.cmd 'colorscheme catppucin'
+  --     -- You can configure highlights by doing something like:
+  --   end,
+  -- },
   {
-    'catppuccin/nvim',
-    name = 'catppuccin',
-    priority = 1000,
-    lazy = false,
-    init = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      -- vim.cmd.colorscheme 'moonfly'
-      vim.opt.background = 'dark' -- set this to dark or light
-      vim.cmd.colorscheme 'catppuccin'
-      -- You can configure highlights by doing something like:
+    'projekt0n/github-nvim-theme',
+    name = 'github-theme',
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
+    config = function()
+      require('github-theme').setup {
+        -- ...
+      }
+
+      vim.cmd 'colorscheme github_dark_default'
+    end,
+  },
+
+  {
+    'akinsho/toggleterm.nvim',
+    config = function()
+      require('toggleterm').setup {
+        size = 10, -- Default terminal height
+        open_mapping = [[<C-`>]], -- You can change this if you prefer a different key for opening the terminal
+        direction = 'horizontal', -- Make the terminal horizontal
+      }
+    end,
+  },
+  {
+    'akinsho/bufferline.nvim',
+    tag = '*',
+    requires = 'kyazdani42/nvim-web-devicons', -- optional, for better icons
+    config = function()
+      require('bufferline').setup {}
+      -- Map keys to cycle through buffers with Bufferline
+      vim.api.nvim_set_keymap('n', '<C-Tab>', ':BufferLineCycleNext<CR>', { noremap = true, silent = true })
+      vim.api.nvim_set_keymap('n', '<C-S-Tab>', ':BufferLineCyclePrev<CR>', { noremap = true, silent = true })
+      vim.api.nvim_set_keymap('n', '<leader>x', ':bdelete<CR>', { noremap = true, silent = true })
     end,
   },
   {
@@ -966,8 +1002,12 @@ require('lazy').setup({
     'windwp/nvim-ts-autotag',
     config = function()
       require('nvim-ts-autotag').setup {
-        auto_rename = true, -- Automatically rename paired tags when one is renamed
-        enable_close_on_slash = true,
+        opts = {
+          -- Defaults
+          enable_close = true, -- Auto close tags
+          enable_rename = true, -- Auto rename pairs of tags
+          enable_close_on_slash = true, -- Auto close on trailing </
+        },
       }
     end,
   },
