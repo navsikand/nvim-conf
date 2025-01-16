@@ -1082,7 +1082,9 @@ require('lazy').setup({
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {},
     config = function()
-      require('lualine').setup {}
+      require('lualine').setup {
+        options = { theme = 'nord' },
+      }
 
       -- Automatically trigger build on save
       -- vim.api.nvim_create_augroup('CMakeAutoBuild', { clear = true })
@@ -1168,6 +1170,15 @@ require('lazy').setup({
     icons = vim.g.have_nerd_font and {} or {
       cmd = '⌘',
       config = '🛠',
+      {
+        'baliestri/aura-theme',
+        lazy = false,
+        priority = 1000,
+        config = function(plugin)
+          vim.opt.rtp:append(plugin.dir .. '/packages/neovim')
+          vim.cmd [[colorscheme aura-dark]]
+        end,
+      },
       event = '📅',
       ft = '📂',
       init = '⚙',
