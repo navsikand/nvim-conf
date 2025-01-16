@@ -317,15 +317,12 @@ require('lazy').setup({
   --     -- You can configure highlights by doing something like:
   --   end,
   -- },
-  --
   {
-    'olimorris/onedarkpro.nvim',
-    name = 'onedarkpro',
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other start plugins
+    'folke/tokyonight.nvim',
+    lazy = false,
+    priority = 1000,
     opts = {},
   },
-
   {
     'projekt0n/github-nvim-theme',
     name = 'github-theme',
@@ -336,7 +333,7 @@ require('lazy').setup({
         -- ...
       }
 
-      vim.cmd 'colorscheme github_dark_default'
+      -- vim.cmd 'colorscheme github_dark_default'
     end,
   },
 
@@ -352,7 +349,6 @@ require('lazy').setup({
   },
   {
     'akinsho/bufferline.nvim',
-    tag = '*',
     requires = 'kyazdani42/nvim-web-devicons', -- optional, for better icons
     config = function()
       require('bufferline').setup {}
@@ -597,6 +593,16 @@ require('lazy').setup({
     },
   },
   { 'Bilal2453/luvit-meta', lazy = true },
+  {
+    'nvimdev/lspsaga.nvim',
+    config = function()
+      require('lspsaga').setup {}
+    end,
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter', -- optional
+      'nvim-tree/nvim-web-devicons', -- optional
+    },
+  },
   {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
