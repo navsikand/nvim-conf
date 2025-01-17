@@ -271,62 +271,12 @@ require('lazy').setup({
       }
     end,
   },
-  -- {
-  --   'bluz71/vim-moonfly-colors',
-  --   name = 'moonfly',
-  --   lazy = false,
-  --   priority = 1000,
-  --
-  --   init = function()
-  --     -- Load the colorscheme here.
-  --     -- Like many other themes, this one has different styles, and you could load
-  --     -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-  --     vim.cmd.colorscheme 'moonfly'
-  --
-  --     -- You can configure highlights by doing something like:
-  --   end,
-  -- },
-  -- {
-  --   'nyoom-engineering/oxocarbon.nvim',
-  --   -- name = 'moonfly',
-  --   lazy = false,
-  --   priority = 1000,
-  --
-  --   init = function()
-  --     -- Load the colorscheme here.
-  --     -- Like many other themes, this one has different styles, and you could load
-  --     -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-  --     -- vim.cmd.colorscheme 'moonfly'
-  --     vim.opt.background = 'dark' -- set this to dark or light
-  --     vim.cmd 'colorscheme oxocarbon'
-  --     -- You can configure highlights by doing something like:
-  --   end,
-  -- },
-  -- {
-  --   'catppuccin/nvim',
-  --   name = 'catppuccin',
-  --   priority = 1000,
-  --   lazy = false,
-  --   init = function()
-  --     -- Load the colorscheme here.
-  --     -- Like many other themes, this one has different styles, and you could load
-  --     -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-  --     -- vim.cmd.colorscheme 'moonfly'
-  --     vim.opt.background = 'dark' -- set this to dark or light
-  --     vim.cmd 'colorscheme catppucin'
-  --     -- You can configure highlights by doing something like:
-  --   end,
-  -- },
   {
     'folke/tokyonight.nvim',
     lazy = false,
     priority = 1000,
     opts = {},
     config = function()
-      require('github-theme').setup {
-        -- ...
-      }
-
       vim.cmd 'colorscheme tokyonight-night'
     end,
   },
@@ -334,14 +284,8 @@ require('lazy').setup({
     'projekt0n/github-nvim-theme',
     name = 'github-theme',
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    opts = {},
     priority = 1000, -- make sure to load this before all the other start plugins
-    config = function()
-      require('github-theme').setup {
-        -- ...
-      }
-
-      -- vim.cmd 'colorscheme github_dark_default'
-    end,
   },
 
   {
