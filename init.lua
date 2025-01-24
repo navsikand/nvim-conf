@@ -91,7 +91,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -280,13 +280,13 @@ require('lazy').setup({
       vim.cmd 'colorscheme tokyonight-night'
     end,
   },
-  -- {
-  --   'projekt0n/github-nvim-theme',
-  --   name = 'github-theme',
-  --   lazy = false, -- make sure we load this during startup if it is your main colorscheme
-  --   opts = {},
-  --   priority = 1000, -- make sure to load this before all the other start plugins
-  -- },
+  {
+    'projekt0n/github-nvim-theme',
+    name = 'github-theme',
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    opts = {},
+    priority = 1000, -- make sure to load this before all the other start plugins
+  },
   {
     'akinsho/toggleterm.nvim',
     config = function()
@@ -822,6 +822,9 @@ require('lazy').setup({
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         javascript = { 'prettierd', stop_after_first = true },
+        json = { 'prettierd' },
+        typescript = { 'prettierd' },
+        typescriptreact = { 'prettierd' },
       },
     },
   },
