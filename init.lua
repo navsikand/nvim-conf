@@ -746,7 +746,11 @@ require('lazy').setup({
             },
           },
         },
-        rust_analyzer = {},
+        rust_analyzer = {
+          checkOnSave = {
+            command = 'clippy',
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed
@@ -826,6 +830,7 @@ require('lazy').setup({
         json = { 'prettierd' },
         typescript = { 'prettierd' },
         typescriptreact = { 'prettierd' },
+        rust = { 'rustfmt' },
       },
     },
   },
