@@ -731,7 +731,7 @@ require('lazy').setup({
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         ts_ls = {},
         --
-
+        markdownlint = {},
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
@@ -828,6 +828,7 @@ require('lazy').setup({
         -- You can use 'stop_after_first' to run the first available formatter from the list
         javascript = { 'prettierd', stop_after_first = true },
         json = { 'prettierd' },
+        markdown = { 'prettierd' },
         typescript = { 'prettierd' },
         typescriptreact = { 'prettierd' },
         rust = { 'rustfmt' },
