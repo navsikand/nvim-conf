@@ -282,25 +282,14 @@ require('lazy').setup({
   },
   {
     'epwalsh/obsidian.nvim',
-    version = '*', -- recommended, use latest release instead of latest commit
+    version = '*', -- Use latest release
     lazy = true,
-    ft = 'markdown',
-    -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-    -- event = {
-    --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-    --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
-    --   -- refer to `:h file-pattern` for more examples
-    --   "BufReadPre path/to/my-vault/*.md",
-    --   "BufNewFile path/to/my-vault/*.md",
-    -- },
     dependencies = {
-      -- Required.
       'nvim-lua/plenary.nvim',
-
-      -- see below for full list of optional dependencies 👇
     },
     config = function()
-      vim.opt.conceallevel = 1
+      vim.opt.conceallevel = 2
+
       vim.keymap.set('n', 'gf', function()
         if require('obsidian').util.cursor_on_markdown_link() then
           return '<cmd>ObsidianFollowLink<CR>'
@@ -312,8 +301,8 @@ require('lazy').setup({
     opts = {
       workspaces = {
         {
-          name = 'personal',
-          path = '~/ASU Dropbox/Navraj Sikand/Obsidian-vaults/Personal Graph',
+          name = 'Personal Graph',
+          path = vim.fn.expand '/home/nav/ASU Dropbox/Navraj Sikand/Obsidian-vaults/Personal Graph',
         },
       },
     },
@@ -769,7 +758,7 @@ require('lazy').setup({
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         ts_ls = {},
         --
-        markdownlint = {},
+        -- markdownlint = {},
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
@@ -866,7 +855,8 @@ require('lazy').setup({
         -- You can use 'stop_after_first' to run the first available formatter from the list
         javascript = { 'prettierd', stop_after_first = true },
         json = { 'prettierd' },
-        markdown = { 'prettierd' },
+        html = { 'prettierd' },
+        -- markdown = { 'prettierd' },
         typescript = { 'prettierd' },
         typescriptreact = { 'prettierd' },
         rust = { 'rustfmt' },
