@@ -282,6 +282,36 @@ require('lazy').setup({
       vim.cmd 'colorscheme tokyonight-night'
     end,
   },
+
+  {
+    'folke/zen-mode.nvim',
+    cmd = 'ZenMode', -- load when the ZenMode command is used
+    keys = {
+      {
+        '<leader>tz',
+        '<cmd>ZenMode<CR>',
+        desc = 'Toggle Zen Mode',
+      },
+    },
+    config = function()
+      require('zen-mode').setup {
+        -- You can add your zen mode configuration options here
+        -- For example:
+        -- window = {
+        --   backdrop = 1,
+        --   width = 0.85,
+        --   height = 1,
+        --   options = {
+        --     signcolumn = "no",
+        --     number = false,
+        --     cursorline = false,
+        --     cursorcolumn = false,
+        --   },
+        -- },
+      }
+    end,
+  },
+
   {
     'projekt0n/github-nvim-theme',
     name = 'github-theme',
