@@ -860,7 +860,7 @@ require('lazy').setup({
         javascript = { 'prettierd', stop_after_first = true },
         json = { 'prettierd' },
         html = { 'prettierd' },
-        -- markdown = { 'prettierd' },
+        markdown = { 'prettierd' },
         typescript = { 'prettierd' },
         typescriptreact = { 'prettierd' },
         rust = { 'rustfmt' },
