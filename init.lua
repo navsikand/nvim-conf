@@ -281,33 +281,6 @@ require('lazy').setup({
     end,
   },
   {
-    'epwalsh/obsidian.nvim',
-    version = '*', -- Use latest release
-    lazy = true,
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-    },
-    config = function()
-      vim.opt.conceallevel = 2
-
-      vim.keymap.set('n', 'gf', function()
-        if require('obsidian').util.cursor_on_markdown_link() then
-          return '<cmd>ObsidianFollowLink<CR>'
-        else
-          return 'gf'
-        end
-      end, { noremap = false, expr = true })
-    end,
-    opts = {
-      workspaces = {
-        {
-          name = 'Personal Graph',
-          path = vim.fn.expand '/home/nav/ASU Dropbox/Navraj Sikand/Obsidian-vaults/Personal Graph',
-        },
-      },
-    },
-  },
-  {
     'projekt0n/github-nvim-theme',
     name = 'github-theme',
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
