@@ -1243,3 +1243,13 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+-- Enable folding by indent for markdown files
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'markdown',
+  callback = function()
+    vim.opt_local.foldmethod = 'indent'
+    vim.opt_local.foldlevel = 99 -- Start with folds open
+  end,
+})
+vim.api.nvim_set_keymap('n', '<Tab>', 'za', { noremap = true, silent = true })
