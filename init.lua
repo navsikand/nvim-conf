@@ -313,6 +313,16 @@ require('lazy').setup({
   },
 
   {
+    'bullets-vim/bullets.vim',
+    ft = { 'markdown', 'text' },
+    config = function()
+      -- Optional configuration if you want to adjust bullet style or behavior
+      vim.g.bullets_enabled_file_types = { 'markdown', 'text' }
+      -- For example, to disable extra padding:
+      -- vim.g.bullets_pad_right = 0
+    end,
+  },
+  {
     'projekt0n/github-nvim-theme',
     name = 'github-theme',
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
@@ -1253,3 +1263,5 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 vim.api.nvim_set_keymap('n', '<Tab>', 'za', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<Tab>', '<C-T>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<S-Tab>', '<C-D>', { noremap = true, silent = true })
