@@ -84,8 +84,6 @@ I hope you enjoy your Neovim journey,
 P.S. You can delete this when you're done too. It's your config now! :)
 --]]
 
-vim.o.conceallevel = 1
-
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
@@ -1260,8 +1258,11 @@ vim.api.nvim_create_autocmd('FileType', {
   callback = function()
     vim.opt_local.foldmethod = 'indent'
     vim.opt_local.foldlevel = 99 -- Start with folds open
+    vim.o.conceallevel = 1
   end,
 })
 vim.api.nvim_set_keymap('n', '<Tab>', 'za', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '<Tab>', '<C-T>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '<S-Tab>', '<C-D>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<Tab>', '>gv', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<S-Tab>', '<gv', { noremap = true, silent = true })
