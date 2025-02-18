@@ -320,6 +320,7 @@ require('lazy').setup({
       -- vim.g.bullets_pad_right = 0
     end,
   },
+  { 'EdenEast/nightfox.nvim' },
   {
     'projekt0n/github-nvim-theme',
     name = 'github-theme',
@@ -895,12 +896,12 @@ require('lazy').setup({
         -- python = { "isort", "black" },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
-        javascript = { 'prettierd', stop_after_first = true },
-        json = { 'prettierd' },
-        html = { 'prettierd' },
-        markdown = { 'prettierd' },
-        typescript = { 'prettierd' },
-        typescriptreact = { 'prettierd' },
+        javascript = { 'prettier', stop_after_first = true },
+        json = { 'prettier' },
+        html = { 'prettier' },
+        markdown = { 'prettier' },
+        typescript = { 'prettier' },
+        typescriptreact = { 'prettier' },
         rust = { 'rustfmt' },
       },
     },
