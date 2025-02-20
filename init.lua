@@ -1113,8 +1113,34 @@ require('lazy').setup({
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {},
     config = function()
+      local function getWords()
+        if vim.bo.filetype == 'md' or vim.bo.filetype == 'txt' or vim.bo.filetype == 'markdown' then
+          if vim.fn.wordcount().visual_words == 1 then
+            return tostring(vim.fn.wordcount().visual_words) .. ' word'
+          elseif not (vim.fn.wordcount().visual_words == nil) then
+            return tostring(vim.fn.wordcount().visual_words) .. ' words'
+          else
+            return tostring(vim.fn.wordcount().words) .. ' words'
+          end
+        else
+          return ''
+        end
+      end
+
       require('lualine').setup {
         options = { theme = 'nord' },
+
+        sections = {
+          lualine_a = { 'mode' },
+          lualine_b = { 'branch', 'diff', 'diagnostics' },
+          lualine_x = {
+            'encoding',
+            'filetype',
+            { getWords },
+          },
+          lualine_y = { 'progress' },
+          lualine_z = { 'location' },
+        },
       }
 
       -- Automatically trigger build on save
