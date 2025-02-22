@@ -1286,6 +1286,8 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.opt_local.foldmethod = 'indent'
     vim.opt_local.foldlevel = 99 -- Start with folds open
     vim.o.conceallevel = 1
+    vim.opt_local.textwidth = 80
+    vim.opt_local.formatoptions:append 't'
   end,
 })
 vim.api.nvim_set_keymap('n', '<Tab>', 'za', { noremap = true, silent = true })
@@ -1293,3 +1295,4 @@ vim.api.nvim_set_keymap('i', '<Tab>', '<C-T>', { noremap = true, silent = true }
 vim.api.nvim_set_keymap('i', '<S-Tab>', '<C-D>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<Tab>', '>gv', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<S-Tab>', '<gv', { noremap = true, silent = true })
+vim.keymap.set('i', '<C-BS>', '<C-w>', { noremap = true, silent = true })
