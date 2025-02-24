@@ -1053,10 +1053,6 @@ require('lazy').setup({
   --     vim.cmd.hi 'Comment gui=none'
   --   end,
   -- },
-
-  -- Highlight todo, notes, etc in comments
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
-
   {
     'windwp/nvim-ts-autotag',
     config = function()
@@ -1288,6 +1284,58 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.o.conceallevel = 1
     vim.opt_local.textwidth = 80
     vim.opt_local.formatoptions:append 't'
+
+    function _G.paste_image()
+      -- Prompt for the image name (without extension)
+      local img_name = vim.fn.input 'Image name (without extension): '
+      if img_name == '' then
+        print 'No image name provided!'
+        return
+      end
+
+      -- Determine the attachments directory and ensure it exists
+      local cwd = vim.fn.getcwd()
+      local attachments_dir = cwd .. '/Attachments'
+      vim.fn.mkdir(attachments_dir, 'p')
+
+      -- Build the file path for the PNG image
+      local file_path = attachments_dir .. '/' .. img_name .. '.png'
+
+      -- Pick the correct command to retrieve the image from clipboard
+      local sys_name = vim.loop.os_uname().sysname
+      local cmd = ''
+      if sys_name == 'Darwin' then
+        -- For macOS; ensure you have pngpaste installed (e.g. via brew install pngpaste)
+        cmd = 'pngpaste ' .. vim.fn.shellescape(file_path)
+      else
+        -- For Linux; ensure xclip is installed
+        cmd = 'xclip -selection clipboard -t image/png -o > ' .. vim.fn.shellescape(file_path)
+      end
+
+      -- Execute the command to save the image
+      local ret = os.execute(cmd)
+      if ret ~= 0 then
+        print 'Failed to save image from clipboard.'
+        return
+      end
+
+      -- Prepare the Markdown image link text
+      local link = string.format('![[%s]]', img_name .. '.png')
+
+      -- Get the current cursor position: row (1-indexed) and col (0-indexed)
+      local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+      -- Use nvim_buf_set_text to insert the link at the cursor position
+      -- Note: row needs to be adjusted to 0-indexed for this API.
+      vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { link })
+
+      print('Image saved to ' .. file_path)
+    end
+
+    -- Optionally, create a user command to call the function explicitly:
+    vim.api.nvim_create_user_command('PasteImage', _G.paste_image, {})
+
+    -- And map it to <leader>ip if desired:
+    vim.api.nvim_set_keymap('n', '<leader>ip', '<cmd>lua _G.paste_image()<CR>', { noremap = true, silent = true })
   end,
 })
 vim.api.nvim_set_keymap('n', '<Tab>', 'za', { noremap = true, silent = true })
