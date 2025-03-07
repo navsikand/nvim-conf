@@ -1284,7 +1284,7 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.o.conceallevel = 1
     vim.opt_local.textwidth = 80
     vim.opt_local.formatoptions:append 't'
-    vim.cmd 'colorscheme carbonfox'
+    -- vim.cmd 'colorscheme carbonfox'
   end,
 })
 vim.api.nvim_set_keymap('n', '<Tab>', 'za', { noremap = true, silent = true })
