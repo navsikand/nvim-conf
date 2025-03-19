@@ -189,7 +189,7 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
-vim.api.nvim_set_keymap('n', '<C-[>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-b>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -321,6 +321,7 @@ require('lazy').setup({
     end,
   },
   { 'EdenEast/nightfox.nvim' },
+  { 'rose-pine/neovim' },
   {
     'projekt0n/github-nvim-theme',
     name = 'github-theme',
@@ -427,7 +428,7 @@ require('lazy').setup({
           ScrollWheelDown = '<ScrollWheelDown> ',
           ScrollWheelUp = '<ScrollWheelUp> ',
           NL = '<NL> ',
-          BS = '<BS> ',
+          -- BS = '<BS> ',
           Space = '<Space> ',
           Tab = '<Tab> ',
           F1 = '<F1>',
@@ -773,7 +774,7 @@ require('lazy').setup({
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         ts_ls = {},
-        --
+        tailwindcss = {},
         -- markdownlint = {},
         lua_ls = {
           -- cmd = { ... },
@@ -822,7 +823,6 @@ require('lazy').setup({
           },
         },
       }
-
       -- Ensure the servers and tools above are installed
       --
       -- To check the current status of installed tools and/or manually install
@@ -968,7 +968,7 @@ require('lazy').setup({
           ['<C-p>'] = cmp.mapping.select_prev_item(),
 
           -- Scroll the documentation window [b]ack / [f]orward
-          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+          -- ['<C-b>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
 
           -- Accept ([y]es) the completion.
@@ -1188,7 +1188,15 @@ require('lazy').setup({
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
-
+  {
+    'mg979/vim-visual-multi',
+    event = 'VeryLazy', -- This loads the plugin lazily
+    config = function()
+      -- You can add any plugin-specific configuration here if needed.
+      -- For example, setting up custom mappings (optional).
+      -- The default configuration works well out of the box.
+    end,
+  },
   {
     'epwalsh/obsidian.nvim',
     version = '*', -- recommended, use latest release instead of latest commit
