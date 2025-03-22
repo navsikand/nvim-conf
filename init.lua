@@ -1158,7 +1158,7 @@ require('lazy').setup({
       end
 
       require('lualine').setup {
-        options = { theme = 'nord' },
+        options = { theme = 'palenight' },
 
         sections = {
           lualine_a = { 'mode' },
