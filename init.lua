@@ -321,14 +321,10 @@ require('lazy').setup({
   {
     'catppuccin/nvim',
     name = 'catppuccin',
-    priority = 1000,
-    config = function()
-      vim.cmd 'colorscheme catppuccin'
-    end,
     opts = {
-      no_italic = true,
-      term_colors = true,
-      transparent_background = false,
+      -- no_italic = true,
+      -- term_colors = true,
+      -- transparent_background = false,
       styles = {
         comments = {},
         conditionals = {},
@@ -1339,3 +1335,4 @@ vim.api.nvim_set_keymap('i', '<S-Tab>', '<C-D>', { noremap = true, silent = true
 vim.api.nvim_set_keymap('v', '<Tab>', '>gv', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<S-Tab>', '<gv', { noremap = true, silent = true })
 vim.keymap.set('i', '<C-BS>', '<C-w>', { noremap = true, silent = true })
+vim.cmd 'colorscheme catppuccin'
