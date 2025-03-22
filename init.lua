@@ -274,10 +274,9 @@ require('lazy').setup({
   {
     'folke/tokyonight.nvim',
     lazy = false,
-    priority = 1000,
     opts = {},
     config = function()
-      vim.cmd 'colorscheme tokyonight-night'
+      -- vim.cmd 'colorscheme tokyonight-night'
     end,
   },
 
@@ -323,6 +322,9 @@ require('lazy').setup({
     'catppuccin/nvim',
     name = 'catppuccin',
     priority = 1000,
+    config = function()
+      vim.cmd 'colorscheme catppuccin'
+    end,
     opts = {
       no_italic = true,
       term_colors = true,
@@ -364,7 +366,6 @@ require('lazy').setup({
     name = 'github-theme',
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     opts = {},
-    priority = 1000, -- make sure to load this before all the other start plugins
   },
   {
     'akinsho/toggleterm.nvim',
