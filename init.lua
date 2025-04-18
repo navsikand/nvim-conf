@@ -279,7 +279,15 @@ require('lazy').setup({
       -- vim.cmd 'colorscheme tokyonight-night'
     end,
   },
-
+  {
+    'folke/todo-comments.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+  },
   {
     'folke/zen-mode.nvim',
     cmd = 'ZenMode', -- load when the ZenMode command is used
@@ -1325,7 +1333,7 @@ vim.api.nvim_create_autocmd('FileType', {
   callback = function()
     vim.opt_local.foldmethod = 'indent'
     vim.opt_local.foldlevel = 99 -- Start with folds open
-    vim.o.conceallevel = 1
+    -- vim.o.conceallevel = 1
     vim.opt_local.textwidth = 80
     vim.opt_local.formatoptions:append 't'
     -- vim.cmd 'colorscheme carbonfox'
