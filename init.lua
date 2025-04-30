@@ -1244,6 +1244,7 @@ require('lazy').setup({
       -- The default configuration works well out of the box.
     end,
   },
+  { 'rickhowe/wrapwidth', config = function() end },
   {
     'epwalsh/obsidian.nvim',
     version = '*', -- recommended, use latest release instead of latest commit
@@ -1336,10 +1337,12 @@ vim.api.nvim_create_autocmd('FileType', {
   callback = function()
     vim.opt_local.foldmethod = 'indent'
     vim.opt_local.foldlevel = 99 -- Start with folds open
-    -- vim.o.conceallevel = 1
-    vim.opt_local.textwidth = 80
-    vim.opt_local.formatoptions:append 't'
+    vim.o.conceallevel = 1
     -- vim.cmd 'colorscheme carbonfox'
+    vim.opt_local.wrap = true
+    vim.opt_local.linebreak = true
+    -- set virtual-wrap at col 80
+    vim.cmd 'Wrapwidth 100'
   end,
 })
 vim.api.nvim_set_keymap('n', '<Tab>', 'za', { noremap = true, silent = true })
