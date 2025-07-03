@@ -820,6 +820,7 @@ require('lazy').setup({
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         ts_ls = {},
+        pyright = {},
         tailwindcss = {},
         lua_ls = {
           -- cmd = { ... },
@@ -1270,6 +1271,11 @@ require('lazy').setup({
     ---@module 'avante'
     ---@type avante.Config
     opts = {
+      web_search_engine = {
+        SEARXNG_API_URL = 'http://localhost:8080',
+        provider = 'searxng', -- tavily, serpapi, searchapi, google, kagi, brave, or searxng
+        proxy = nil, -- proxy support, e.g., http://127.0.0.1:7890
+      },
       -- add any opts here
       -- for example
       provider = 'ollama',
@@ -1325,35 +1331,6 @@ require('lazy').setup({
     },
   },
   { 'rickhowe/wrapwidth', config = function() end },
-  {
-    'epwalsh/obsidian.nvim',
-    version = '*', -- recommended, use latest release instead of latest commit
-    lazy = true,
-    ft = 'markdown',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-    },
-    opts = {
-      workspaces = {
-        {
-          name = 'personal',
-          path = '~/ASU Dropbox/Navraj Sikand/Obsidian-vaults/b2',
-        },
-
-        {
-          name = 'work',
-          path = '~/Documents/testing',
-        },
-      },
-    },
-    keys = {
-      {
-        '<leader>zz',
-        '<cmd>ObsidianToday<CR>',
-        desc = "Open today's Obsidian daily note",
-      },
-    },
-  },
 
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
@@ -1422,7 +1399,7 @@ vim.api.nvim_create_autocmd('FileType', {
   callback = function()
     vim.opt_local.foldmethod = 'indent'
     vim.opt_local.foldlevel = 99 -- Start with folds open
-    vim.o.conceallevel = 1
+    vim.o.conceallevel = 0
     -- vim.cmd 'colorscheme carbonfox'
     vim.opt_local.wrap = true
     vim.opt_local.linebreak = true
