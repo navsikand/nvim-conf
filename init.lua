@@ -1271,23 +1271,21 @@ require('lazy').setup({
     ---@module 'avante'
     ---@type avante.Config
     opts = {
-      web_search_engine = {
-        SEARXNG_API_URL = 'http://localhost:8080',
-        provider = 'searxng', -- tavily, serpapi, searchapi, google, kagi, brave, or searxng
-        proxy = nil, -- proxy support, e.g., http://127.0.0.1:7890
-      },
+      -- web_search_engine = {
+      --   SEARXNG_API_URL = 'http://localhost:8080',
+      --   provider = 'searxng', -- tavily, serpapi, searchapi, google, kagi, brave, or searxng
+      --   proxy = nil, -- proxy support, e.g., http://127.0.0.1:7890
+      -- },
       -- add any opts here
       -- for example
-      provider = 'ollama',
+      provider = 'llamacpp',
       providers = {
-        ollama = {
-          endpoint = 'https://ollama.navraj.me',
-          model = 'hf.co/unsloth/Devstral-Small-2505-GGUF:Q4_K_XL',
+        llamacpp = {
+          endpoint = 'https://llamacpp.navraj.me/v1',
+          model = 'Devstral-Small-2507',
+          __inherited_from = 'openai',
+          api_key = 'no-key',
           timeout = 30000, -- Timeout in milliseconds
-          extra_request_body = {
-            temperature = 0.15,
-            max_tokens = 20480,
-          },
         },
       },
     },
@@ -1399,7 +1397,7 @@ vim.api.nvim_create_autocmd('FileType', {
   callback = function()
     vim.opt_local.foldmethod = 'indent'
     vim.opt_local.foldlevel = 99 -- Start with folds open
-    vim.o.conceallevel = 0
+    -- vim.o.conceallevel = 0
     -- vim.cmd 'colorscheme carbonfox'
     vim.opt_local.wrap = true
     vim.opt_local.linebreak = true
