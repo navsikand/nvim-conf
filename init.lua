@@ -1282,7 +1282,7 @@ require('lazy').setup({
       providers = {
         llamacpp = {
           endpoint = 'https://llamacpp.navraj.me/v1',
-          model = 'Devstral-Small-2507',
+          model = 'Qwen3-Coder-30B-A3B-Instruct',
           __inherited_from = 'openai',
           api_key = 'no-key',
           timeout = 30000, -- Timeout in milliseconds
