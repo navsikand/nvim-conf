@@ -1278,23 +1278,23 @@ require('lazy').setup({
       -- },
       -- add any opts here
       -- for example
-      -- provider = 'llamacpp',
-      -- providers = {
-      --   llamacpp = {
-      --     endpoint = 'https://llamacpp.navraj.me/v1',
-      --     model = 'Qwen3-Coder-30B-A3B-Instruct',
-      --     __inherited_from = 'openai',
-      --     api_key = 'no-key',
-      --     timeout = 30000, -- Timeout in milliseconds
-      --   },
-      -- },
-      provider = 'ollama',
+      provider = 'llamacpp',
       providers = {
-        ollama = {
-          endpoint = 'https://ollama.navraj.me',
-          model = 'hf.co/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:UD-Q5_K_XL',
+        llamacpp = {
+          endpoint = 'https://llamacpp.navraj.me/v1',
+          model = 'Qwen3-Coder-30B-A3B-Instruct',
+          __inherited_from = 'openai',
+          api_key = 'no-key',
+          timeout = 30000, -- Timeout in milliseconds
         },
       },
+      -- provider = 'ollama',
+      -- providers = {
+      --   ollama = {
+      --     endpoint = 'https://ollama.navraj.me',
+      --     model = 'hf.co/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:UD-Q5_K_XL',
+      --   },
+      -- },
     },
     dependencies = {
       'nvim-lua/plenary.nvim',
