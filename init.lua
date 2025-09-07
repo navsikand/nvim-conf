@@ -1296,8 +1296,8 @@ require('lazy').setup({
       providers = {
         llamacpp = {
           endpoint = 'https://goldfinch-llama.navraj.me/v1',
-          -- model = 'Qwen3-Coder-30B-A3B-Instruct',
-          model = 'GLM-4.5-Air:IQ4_XS',
+          model = 'Qwen3-Coder-30B-A3B-Instruct',
+          -- model = 'GLM-4.5-Air:IQ4_XS',
           max_tokens = 130000,
           __inherited_from = 'openai',
           api_key = 'no-key',
