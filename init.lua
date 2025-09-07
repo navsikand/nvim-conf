@@ -820,7 +820,14 @@ require('lazy').setup({
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         ts_ls = {},
-        pyright = {},
+        pyright = {
+          settings = {
+            python = {
+              venvPath = '.', -- dir that holds venv(s)
+              venv = '.venv',
+            },
+          },
+        },
         tailwindcss = {},
         lua_ls = {
           -- cmd = { ... },
@@ -947,9 +954,20 @@ require('lazy').setup({
         json = { 'prettier' },
         html = { 'prettier' },
         markdown = { 'prettier' },
+        python = { 'isort', 'black' },
         typescript = { 'prettier' },
         typescriptreact = { 'prettier' },
         rust = { 'rustfmt' },
+
+        formatters = {
+          isort = {
+            prepend_args = { '--profile', 'black' }, -- make isort match black style
+          },
+          black = {
+            -- Example: use a project-local venv if available
+            env = { PYTHONBREAKPOINT = '0' },
+          },
+        },
       },
     },
   },
@@ -1281,7 +1299,7 @@ require('lazy').setup({
       provider = 'llamacpp',
       providers = {
         llamacpp = {
-          endpoint = 'https://llamacpp.navraj.me/v1',
+          endpoint = 'https://goldfinch-llama.navraj.me/v1',
           model = 'Qwen3-Coder-30B-A3B-Instruct',
           __inherited_from = 'openai',
           api_key = 'no-key',
