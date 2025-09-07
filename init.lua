@@ -1278,11 +1278,7 @@ require('lazy').setup({
     -- ⚠️ must add this setting! ! !
     build = function()
       -- conditionally use the correct build system for the current OS
-      if vim.fn.has 'win32' == 1 then
-        return 'powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false'
-      else
-        return 'make'
-      end
+      return 'make'
     end,
     event = 'VeryLazy',
     version = false, -- Never set this value to "*"! Never!
@@ -1300,7 +1296,9 @@ require('lazy').setup({
       providers = {
         llamacpp = {
           endpoint = 'https://goldfinch-llama.navraj.me/v1',
-          model = 'Qwen3-Coder-30B-A3B-Instruct',
+          -- model = 'Qwen3-Coder-30B-A3B-Instruct',
+          model = 'GLM-4.5-Air:IQ4_XS',
+          max_tokens = 130000,
           __inherited_from = 'openai',
           api_key = 'no-key',
           timeout = 30000, -- Timeout in milliseconds
