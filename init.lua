@@ -163,6 +163,9 @@ vim.opt.scrolloff = 10
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+local OPENAI_API_BASE = os.getenv 'OPENAI_API_BASE'
+local OPENAI_API_KEY = os.getenv 'OPENAI_API_KEY'
+local OPENAI_MODEL = os.getenv 'OPENAI_API_KEY'
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
@@ -1295,12 +1298,24 @@ require('lazy').setup({
       provider = 'llamacpp',
       providers = {
         llamacpp = {
-          endpoint = 'https://goldfinch-llama.navraj.me/v1',
-          model = 'Qwen3-Coder-30B-A3B-Instruct',
-          -- model = 'GLM-4.5-Air:IQ4_XS',
-          max_tokens = 130000,
+          endpoint = OPENAI_API_BASE,
+          model = 'zai-org/GLM-4.5-Air',
+          models = {
+            'deepseek-ai/DeepSeek-V3.1-Terminus',
+            'deepseek-ai/DeepSeek-V3.1-Terminus:thinking',
+            'deepseek-ai/deepseek-v3.2-exp',
+            'deepseek-ai/deepseek-v3.2-exp-thinking',
+            'deepseek-ai/DeepSeek-R1-0528',
+            'z-ai/glm-4.6',
+            'z-ai/glm-4.6:thinking',
+            'zai-org/GLM-4.5-Air',
+            'zai-org/GLM-4.5-Air:thinking',
+            'moonshotai/Kimi-K2-Instruct-0905',
+            'Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8',
+          },
+          max_tokens = 128000,
           __inherited_from = 'openai',
-          api_key = 'no-key',
+          api_key = OPENAI_API_KEY,
           timeout = 30000, -- Timeout in milliseconds
         },
       },
