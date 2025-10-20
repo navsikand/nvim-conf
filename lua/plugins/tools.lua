@@ -201,13 +201,18 @@ return {
     ---@module 'avante'
     ---@type avante.Config
     opts = {
+      -- web_search_engine = {
+      --   SEARXNG_API_URL = 'http://localhost:8080',
+      --   provider = 'searxng', -- tavily, serpapi, searchapi, google, kagi, brave, or searxng
+      --   proxy = nil, -- proxy support, e.g., http://127.0.0.1:7890
+      -- },
       -- add any opts here
       -- for example
-      provider = 'llamacpp',
+      provider = 'nanogpt',
       providers = {
-        llamacpp = {
+        nanogpt = {
           endpoint = os.getenv 'OPENAI_API_BASE',
-          model = 'zai-org/GLM-4.5-Air',
+          model = 'deepseek-ai/deepseek-v3.2-exp',
           models = {
             'deepseek-ai/DeepSeek-V3.1-Terminus',
             'deepseek-ai/DeepSeek-V3.1-Terminus:thinking',
@@ -239,7 +244,6 @@ return {
       'stevearc/dressing.nvim', -- for input provider dressing
       'folke/snacks.nvim', -- for input provider snacks
       'nvim-tree/nvim-web-devicons', -- or echasnovski/mini.icons
-      'zbirenbaum/copilot.lua', -- for providers='copilot'
       {
         -- support for image pasting
         'HakonHarnes/img-clip.nvim',
@@ -261,9 +265,9 @@ return {
         -- Make sure to set this up properly if you have lazy=true
         'MeanderingProgrammer/render-markdown.nvim',
         opts = {
-          file_types = { 'markdown', 'Avante' },
+          file_types = { 'Avante' },
         },
-        ft = { 'markdown', 'Avante' },
+        ft = { 'Avante' },
       },
     },
   },
