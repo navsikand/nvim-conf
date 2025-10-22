@@ -10,7 +10,7 @@ local function setup_python_lsp()
         vim.defer_fn(function()
           pcall(function()
             vim.cmd('LspPyrightSetPythonPath ' .. python_path)
-            print("✅ Python LSP using: " .. python_path)
+            print("Python LSP using: " .. python_path)
           end)
         end, 2000)
       end
@@ -28,5 +28,3 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
   pattern = '*.py',
   callback = setup_python_lsp,
 })
-
-print("Python LSP setup loaded. Use :SetupPythonLSP to manually configure.")

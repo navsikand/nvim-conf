@@ -162,13 +162,13 @@ return {
   {
     'numToStr/FTerm.nvim',
     config = function()
-      require('FTerm').setup({
+      require('FTerm').setup {
         border = 'single',
         dimensions = {
           height = 0.9,
           width = 0.9,
         },
-      })
+      }
       vim.keymap.set('n', '<A-i>', '<CMD>lua require("FTerm").toggle()<CR>', { desc = 'Toggle floating terminal' })
       vim.keymap.set('t', '<A-i>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', { desc = 'Toggle floating terminal' })
     end,
@@ -178,12 +178,12 @@ return {
   {
     'phaazon/hop.nvim',
     config = function()
-      require('hop').setup({
+      require('hop').setup {
         keys = 'etovxqpdygfblzhckisuran',
-      })
-      vim.keymap.set('n', '<leader>hw', "<cmd>HopWord<cr>", { desc = '[H]op [W]ord navigation' })
-      vim.keymap.set('n', '<leader>hl', "<cmd>HopLine<cr>", { desc = '[H]op [L]ine navigation' })
-      vim.keymap.set('n', '<leader>hc', "<cmd>HopChar1<cr>", { desc = '[H]op [C]haracter navigation' })
+      }
+      vim.keymap.set('n', '<leader>hw', '<cmd>HopWord<cr>', { desc = '[H]op [W]ord navigation' })
+      vim.keymap.set('n', '<leader>hl', '<cmd>HopLine<cr>', { desc = '[H]op [L]ine navigation' })
+      vim.keymap.set('n', '<leader>hc', '<cmd>HopChar1<cr>', { desc = '[H]op [C]haracter navigation' })
     end,
   },
 
@@ -212,7 +212,7 @@ return {
       providers = {
         nanogpt = {
           endpoint = os.getenv 'OPENAI_API_BASE',
-          model = 'deepseek-ai/deepseek-v3.2-exp',
+          model = 'Qwen/Qwen3-Next-80B-A3B-Instruct',
           models = {
             'deepseek-ai/DeepSeek-V3.1-Terminus',
             'deepseek-ai/DeepSeek-V3.1-Terminus:thinking',
@@ -225,6 +225,7 @@ return {
             'zai-org/GLM-4.5-Air:thinking',
             'moonshotai/Kimi-K2-Instruct-0905',
             'Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8',
+            'Qwen/Qwen3-Next-80B-A3B-Instruct',
           },
           max_tokens = 128000,
           __inherited_from = 'openai',
