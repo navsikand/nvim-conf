@@ -7,7 +7,7 @@ return {
     name = 'catppuccin',
     priority = 1000,
     config = function()
-      require('catppuccin').setup({
+      require('catppuccin').setup {
         -- no_italic = true,
         -- term_colors = true,
         -- transparent_background = false,
@@ -41,12 +41,23 @@ return {
             color_mode = true,
           },
         },
-      })
+      }
       -- vim.cmd 'colorscheme catppuccin'
-      vim.cmd 'colorscheme lunaperche'
+      -- vim.cmd 'colorscheme lunaperche'
     end,
   },
-
+  {
+    'jesseleite/nvim-noirbuddy',
+    dependencies = {
+      { 'tjdevries/colorbuddy.nvim' },
+    },
+    lazy = false,
+    priority = 1000,
+    opts = {
+      preset = 'miami-nights',
+      -- All of your `setup(opts)` will go here
+    },
+  },
   -- Alternative theme (currently disabled)
   -- { -- You can easily change to a different colorscheme.
   --   -- Change the name of the colorscheme plugin below, and then
@@ -97,21 +108,13 @@ return {
         end
       end
 
+      local noirbuddy_lualine = require('noirbuddy.plugins.lualine')
       require('lualine').setup {
-        options = { theme = 'palenight' },
-
-        sections = {
-          lualine_a = { 'mode' },
-          lualine_b = { 'branch', 'diff', 'diagnostics' },
-          lualine_c = { { 'filename', path = 1 } }, -- Relative file path displayed here.
-          lualine_x = {
-            'encoding',
-            'filetype',
-            { getWords },
-          },
-          lualine_y = { 'progress' },
-          lualine_z = { 'location' },
+        options = {
+          theme = noirbuddy_lualine.theme,
         },
+        sections = noirbuddy_lualine.sections,
+        inactive_sections = noirbuddy_lualine.inactive_sections,
       }
     end,
   },

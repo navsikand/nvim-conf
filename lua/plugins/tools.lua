@@ -212,7 +212,7 @@ return {
       providers = {
         nanogpt = {
           endpoint = os.getenv 'OPENAI_API_BASE',
-          model = 'Qwen/Qwen3-Next-80B-A3B-Instruct',
+          model = 'openai/gpt-oss-120b',
           models = {
             'deepseek-ai/DeepSeek-V3.1-Terminus',
             'deepseek-ai/DeepSeek-V3.1-Terminus:thinking',
@@ -226,6 +226,7 @@ return {
             'moonshotai/Kimi-K2-Instruct-0905',
             'Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8',
             'Qwen/Qwen3-Next-80B-A3B-Instruct',
+            'openai/gpt-oss-120b'
           },
           max_tokens = 128000,
           __inherited_from = 'openai',
