@@ -54,6 +54,34 @@ M.on_attach = function(event)
   --  For example, in C this would take you to the header.
   map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
+  -- Enhanced navigation: Plain jumps (direct, no telescope)
+  map('gpd', vim.lsp.buf.definition, '[G]oto [P]lain [D]efinition')
+  map('gps', vim.lsp.buf.declaration, '[G]oto [P]lain [D]eclaration')
+  map('gpi', vim.lsp.buf.implementation, '[G]oto [P]lain [I]mplementation')
+
+  -- Diagnostic navigation
+  map('[d', vim.diagnostic.goto_prev, '[D]iagnostic: [P]revious')
+  map(']d', vim.diagnostic.goto_next, '[D]iagnostic: [N]ext')
+  map('<leader>e', vim.diagnostic.open_float, '[E]rror diagnostic')
+  map('<leader>dl', vim.diagnostic.setloclist, '[D]iagnostic: [L]ist')
+
+  -- Signature help and hover documentation
+  map('<C-k>', vim.lsp.buf.signature_help, '[S]ignature [H]elp')
+  map('K', vim.lsp.buf.hover, '[H]over documentation')
+
+  -- Formatting and code actions
+  map('<leader>f', function()
+    vim.lsp.buf.format { async = true }
+  end, '[F]ormat buffer')
+  map('<leader>qf', vim.lsp.buf.code_action, '[Q]uick [F]ix')
+
+  -- Enhanced code actions in visual mode
+  map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'v', 'n' })
+
+  -- Remove duplicate <leader>ca mapping from actions-preview plugin
+  -- This was causing the conflict with the handler's mapping
+  -- The plugin's mapping is now redundant since we have better mappings
+
   -- The following two autocommands are used to highlight references of the
   -- word under your cursor when your cursor rests there for a little while.
   --    See `:help CursorHold` for information about when this is executed
@@ -103,6 +131,16 @@ M.on_attach = function(event)
   map('<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
+
+  -- Additional useful keymaps
+  map('<leader>td', function()
+    local enabled = vim.diagnostic.is_enabled()
+    vim.diagnostic.enable(not enabled)
+  end, '[T]oggle [D]iagnostics')
+  map('<leader>oc', require('telescope.builtin').lsp_outgoing_calls, '[O]utgoing [C]alls')
+  map('<leader>lr', function()
+    vim.lsp.stop_client(vim.lsp.get_active_clients())
+  end, '[L]SP [R]estart')
 end
 
 return M

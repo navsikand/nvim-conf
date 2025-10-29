@@ -34,6 +34,8 @@ return {
       bind = true,
       handler_opts = {
         border = 'rounded',
+        show_signature = true,
+        auto_trigger = true,
       },
     },
     config = function(_, opts)
@@ -48,8 +50,11 @@ return {
       require('actions-preview').setup({
         backend = { 'telescope', 'nui' },
         telescope = require('telescope.themes').get_dropdown(),
+        show_documentation = true,
       })
-      vim.keymap.set({ 'v', 'n' }, '<leader>ca', require('actions-preview').code_actions, { desc = '[C]ode [A]ctions' })
+      -- Removed duplicate <leader>ca mapping
+      -- This conflicts with the handler's mapping and was causing the error
+      -- The handler now provides better LSP code actions mapping
     end,
   },
 
