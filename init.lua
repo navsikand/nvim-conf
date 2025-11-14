@@ -18,13 +18,15 @@
 ========                                                     ========
 =====================================================================
 =====================================================================
-]]--
+]]
+--
+-- Correct terminal colors over ssh
+vim.o.termguicolors = true
 
 -- Load core modules
-require('core.options')
-require('core.keymaps')
-require('core.autocommands')
+require 'core.options'
+require 'core.keymaps'
+require 'core.autocommands'
 
 -- Setup lazy.nvim and load plugins
-require('core.lazy')
-
+require 'core.lazy'
