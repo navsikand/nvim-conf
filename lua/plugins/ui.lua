@@ -2,62 +2,62 @@
 
 return {
   -- Theme
-  {
-    'catppuccin/nvim',
-    name = 'catppuccin',
-    priority = 1000,
-    config = function()
-      require('catppuccin').setup {
-        -- no_italic = true,
-        -- term_colors = true,
-        -- transparent_background = false,
-        styles = {
-          comments = {},
-          conditionals = {},
-          loops = {},
-          functions = {},
-          keywords = {},
-          strings = {},
-          variables = {},
-          numbers = {},
-          booleans = {},
-          properties = {},
-          types = {},
-        },
-        color_overrides = {
-          mocha = {
-            base = '#000000',
-            mantle = '#000000',
-            crust = '#000000',
-          },
-        },
-        integrations = {
-          telescope = {
-            enabled = true,
-            -- style = 'nvchad',
-          },
-          dropbar = {
-            enabled = true,
-            color_mode = true,
-          },
-        },
-      }
-      -- vim.cmd 'colorscheme catppuccin'
-      -- vim.cmd 'colorscheme lunaperche'
-    end,
-  },
-  {
-    'jesseleite/nvim-noirbuddy',
-    dependencies = {
-      { 'tjdevries/colorbuddy.nvim' },
-    },
-    lazy = false,
-    priority = 1000,
-    opts = {
-      preset = 'miami-nights',
-      -- All of your `setup(opts)` will go here
-    },
-  },
+  -- {
+  --   'catppuccin/nvim',
+  --   name = 'catppuccin',
+  --   priority = 1000,
+  --   config = function()
+  --     require('catppuccin').setup {
+  --       -- no_italic = true,
+  --       -- term_colors = true,
+  --       -- transparent_background = false,
+  --       styles = {
+  --         comments = {},
+  --         conditionals = {},
+  --         loops = {},
+  --         functions = {},
+  --         keywords = {},
+  --         strings = {},
+  --         variables = {},
+  --         numbers = {},
+  --         booleans = {},
+  --         properties = {},
+  --         types = {},
+  --       },
+  --       color_overrides = {
+  --         mocha = {
+  --           base = '#000000',
+  --           mantle = '#000000',
+  --           crust = '#000000',
+  --         },
+  --       },
+  --       integrations = {
+  --         telescope = {
+  --           enabled = true,
+  --           -- style = 'nvchad',
+  --         },
+  --         dropbar = {
+  --           enabled = true,
+  --           color_mode = true,
+  --         },
+  --       },
+  --     }
+  --     -- vim.cmd 'colorscheme catppuccin'
+  --     -- vim.cmd 'colorscheme lunaperche'
+  --   end,
+  -- },
+  -- {
+  --   'jesseleite/nvim-noirbuddy',
+  --   dependencies = {
+  --     { 'tjdevries/colorbuddy.nvim' },
+  --   },
+  --   lazy = false,
+  --   priority = 1000,
+  --   opts = {
+  --     preset = 'miami-nights',
+  --     -- All of your `setup(opts)` will go here
+  --   },
+  -- },
   -- Alternative theme (currently disabled)
   -- { -- You can easily change to a different colorscheme.
   --   -- Change the name of the colorscheme plugin below, and then
@@ -87,6 +87,14 @@ return {
   --     vim.cmd [[colorscheme aura-dark]]
   --   end,
   -- },
+  {
+    'vague-theme/vague.nvim',
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other plugins
+    config = function()
+      vim.cmd 'colorscheme vague'
+    end,
+  },
 
   -- Statusline
   {
@@ -108,14 +116,14 @@ return {
         end
       end
 
-      local noirbuddy_lualine = require('noirbuddy.plugins.lualine')
-      require('lualine').setup {
-        options = {
-          theme = noirbuddy_lualine.theme,
-        },
-        sections = noirbuddy_lualine.sections,
-        inactive_sections = noirbuddy_lualine.inactive_sections,
-      }
+      -- local noirbuddy_lualine = require 'noirbuddy.plugins.lualine'
+      -- require('lualine').setup {
+      --   options = {
+      --     theme = noirbuddy_lualine.theme,
+      --   },
+      --   sections = noirbuddy_lualine.sections,
+      --   inactive_sections = noirbuddy_lualine.inactive_sections,
+      -- }
     end,
   },
 
