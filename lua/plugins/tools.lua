@@ -185,92 +185,92 @@ return {
       vim.keymap.set('n', '<leader>hl', '<cmd>HopLine<cr>', { desc = '[H]op [L]ine navigation' })
       vim.keymap.set('n', '<leader>hc', '<cmd>HopChar1<cr>', { desc = '[H]op [C]haracter navigation' })
     end,
-  },
+  }
 
   -- AI Assistant
-  {
-    'yetone/avante.nvim',
-    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-    -- ⚠️ must add this setting! ! !
-    build = function()
-      -- conditionally use the correct build system for the current OS
-      return 'make'
-    end,
-    event = 'VeryLazy',
-    version = false, -- Never set this value to "*"! Never!
-    ---@module 'avante'
-    ---@type avante.Config
-    opts = {
-      -- web_search_engine = {
-      --   SEARXNG_API_URL = 'http://localhost:8080',
-      --   provider = 'searxng', -- tavily, serpapi, searchapi, google, kagi, brave, or searxng
-      --   proxy = nil, -- proxy support, e.g., http://127.0.0.1:7890
-      -- },
-      -- add any opts here
-      -- for example
-      provider = 'nanogpt',
-      providers = {
-        nanogpt = {
-          endpoint = os.getenv 'OPENAI_API_BASE',
-          model = 'openai/gpt-oss-120b',
-          models = {
-            'deepseek-ai/DeepSeek-V3.1-Terminus',
-            'deepseek-ai/DeepSeek-V3.1-Terminus:thinking',
-            'deepseek-ai/deepseek-v3.2-exp',
-            'deepseek-ai/deepseek-v3.2-exp-thinking',
-            'deepseek-ai/DeepSeek-R1-0528',
-            'z-ai/glm-4.6',
-            'z-ai/glm-4.6:thinking',
-            'zai-org/GLM-4.5-Air',
-            'zai-org/GLM-4.5-Air:thinking',
-            'moonshotai/Kimi-K2-Instruct-0905',
-            'Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8',
-            'Qwen/Qwen3-Next-80B-A3B-Instruct',
-            'openai/gpt-oss-120b'
-          },
-          max_tokens = 128000,
-          __inherited_from = 'openai',
-          api_key = os.getenv 'OPENAI_API_KEY',
-          timeout = 30000, -- Timeout in milliseconds
-        },
-      },
-    },
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'MunifTanjim/nui.nvim',
-      --- The below dependencies are optional,
-      'echasnovski/mini.pick', -- for file_selector provider mini.pick
-      'nvim-telescope/telescope.nvim', -- for file_selector provider telescope
-      'hrsh7th/nvim-cmp', -- autocompletion for avante commands and mentions
-      'ibhagwan/fzf-lua', -- for file_selector provider fzf
-      'stevearc/dressing.nvim', -- for input provider dressing
-      'folke/snacks.nvim', -- for input provider snacks
-      'nvim-tree/nvim-web-devicons', -- or echasnovski/mini.icons
-      {
-        -- support for image pasting
-        'HakonHarnes/img-clip.nvim',
-        event = 'VeryLazy',
-        opts = {
-          -- recommended settings
-          default = {
-            embed_image_as_base64 = false,
-            prompt_for_file_name = false,
-            drag_and_drop = {
-              insert_mode = true,
-            },
-            -- required for Windows users
-            use_absolute_path = true,
-          },
-        },
-      },
-      {
-        -- Make sure to set this up properly if you have lazy=true
-        'MeanderingProgrammer/render-markdown.nvim',
-        opts = {
-          file_types = { 'Avante' },
-        },
-        ft = { 'Avante' },
-      },
-    },
-  },
+  -- {
+  --   'yetone/avante.nvim',
+  --   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+  --   -- ⚠️ must add this setting! ! !
+  --   build = function()
+  --     -- conditionally use the correct build system for the current OS
+  --     return 'make'
+  --   end,
+  --   event = 'VeryLazy',
+  --   version = false, -- Never set this value to "*"! Never!
+  --   ---@module 'avante'
+  --   ---@type avante.Config
+  --   opts = {
+  --     -- web_search_engine = {
+  --     --   SEARXNG_API_URL = 'http://localhost:8080',
+  --     --   provider = 'searxng', -- tavily, serpapi, searchapi, google, kagi, brave, or searxng
+  --     --   proxy = nil, -- proxy support, e.g., http://127.0.0.1:7890
+  --     -- },
+  --     -- add any opts here
+  --     -- for example
+  --     provider = 'nanogpt',
+  --     providers = {
+  --       nanogpt = {
+  --         endpoint = os.getenv 'OPENAI_API_BASE',
+  --         model = 'openai/gpt-oss-120b',
+  --         models = {
+  --           'deepseek-ai/DeepSeek-V3.1-Terminus',
+  --           'deepseek-ai/DeepSeek-V3.1-Terminus:thinking',
+  --           'deepseek-ai/deepseek-v3.2-exp',
+  --           'deepseek-ai/deepseek-v3.2-exp-thinking',
+  --           'deepseek-ai/DeepSeek-R1-0528',
+  --           'z-ai/glm-4.6',
+  --           'z-ai/glm-4.6:thinking',
+  --           'zai-org/GLM-4.5-Air',
+  --           'zai-org/GLM-4.5-Air:thinking',
+  --           'moonshotai/Kimi-K2-Instruct-0905',
+  --           'Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8',
+  --           'Qwen/Qwen3-Next-80B-A3B-Instruct',
+  --           'openai/gpt-oss-120b'
+  --         },
+  --         max_tokens = 128000,
+  --         __inherited_from = 'openai',
+  --         api_key = os.getenv 'OPENAI_API_KEY',
+  --         timeout = 30000, -- Timeout in milliseconds
+  --       },
+  --     },
+  --   },
+  --   dependencies = {
+  --     'nvim-lua/plenary.nvim',
+  --     'MunifTanjim/nui.nvim',
+  --     --- The below dependencies are optional,
+  --     'echasnovski/mini.pick', -- for file_selector provider mini.pick
+  --     'nvim-telescope/telescope.nvim', -- for file_selector provider telescope
+  --     'hrsh7th/nvim-cmp', -- autocompletion for avante commands and mentions
+  --     'ibhagwan/fzf-lua', -- for file_selector provider fzf
+  --     'stevearc/dressing.nvim', -- for input provider dressing
+  --     'folke/snacks.nvim', -- for input provider snacks
+  --     'nvim-tree/nvim-web-devicons', -- or echasnovski/mini.icons
+  --     {
+  --       -- support for image pasting
+  --       'HakonHarnes/img-clip.nvim',
+  --       event = 'VeryLazy',
+  --       opts = {
+  --         -- recommended settings
+  --         default = {
+  --           embed_image_as_base64 = false,
+  --           prompt_for_file_name = false,
+  --           drag_and_drop = {
+  --             insert_mode = true,
+  --           },
+  --           -- required for Windows users
+  --           use_absolute_path = true,
+  --         },
+  --       },
+  --     },
+  --     {
+  --       -- Make sure to set this up properly if you have lazy=true
+  --       'MeanderingProgrammer/render-markdown.nvim',
+  --       opts = {
+  --         file_types = { 'Avante' },
+  --       },
+  --       ft = { 'Avante' },
+  --     },
+  --   },
+  -- },
 }
