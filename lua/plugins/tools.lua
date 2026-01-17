@@ -185,7 +185,15 @@ return {
       vim.keymap.set('n', '<leader>hl', '<cmd>HopLine<cr>', { desc = '[H]op [L]ine navigation' })
       vim.keymap.set('n', '<leader>hc', '<cmd>HopChar1<cr>', { desc = '[H]op [C]haracter navigation' })
     end,
-  }
+  },
+
+  -- Typst preview
+  {
+    'chomosuke/typst-preview.nvim',
+    lazy = false, -- or ft = 'typst'
+    version = '1.*',
+    opts = {}, -- lazy.nvim will implicitly calls `setup {}`
+  },
 
   -- AI Assistant
   -- {
