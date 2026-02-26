@@ -2,6 +2,63 @@
 
 local M = {}
 
+local function resolve_python_path(root_dir)
+  local candidates = {
+    root_dir .. '/.venv/bin/python',
+    root_dir .. '/venv/bin/python',
+  }
+
+  if vim.env.VIRTUAL_ENV and vim.env.VIRTUAL_ENV ~= '' then
+    table.insert(candidates, 1, vim.env.VIRTUAL_ENV .. '/bin/python')
+  end
+
+  for _, path in ipairs(candidates) do
+    if vim.fn.executable(path) == 1 then
+      return path
+    end
+  end
+
+  return vim.fn.exepath('python3')
+end
+
+local function python_site_packages(python_path)
+  if not python_path or python_path == '' then
+    return {}
+  end
+
+  local script = [[import site
+paths = []
+try:
+    paths.extend(site.getsitepackages())
+except Exception:
+    pass
+try:
+    p = site.getusersitepackages()
+    if isinstance(p, str):
+        paths.append(p)
+except Exception:
+    pass
+for p in dict.fromkeys(paths):
+    print(p)
+]]
+
+  local cmd = string.format("%s -c %s", vim.fn.shellescape(python_path), vim.fn.shellescape(script))
+  local out = vim.fn.systemlist(cmd)
+
+  if vim.v.shell_error ~= 0 then
+    return {}
+  end
+
+  local paths = {}
+  for _, p in ipairs(out) do
+    if p ~= '' and vim.fn.isdirectory(p) == 1 then
+      table.insert(paths, p)
+    end
+  end
+
+  return paths
+end
+
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
 --
@@ -14,7 +71,7 @@ local M = {}
 M.servers = {
   clangd = {},
   -- gopls = {},
-  -- pyright = {},
+  -- basedpyright = {},
   -- rust_analyzer = {},
   -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 
@@ -27,10 +84,20 @@ M.servers = {
   -- But for many setups, the LSP (`ts_ls`) will work just fine
   ts_ls = {},
   pyright = {
+    autostart = false,
+  },
+  basedpyright = {
+    before_init = function(_, config)
+      config.settings = config.settings or {}
+      config.settings.python = config.settings.python or {}
+      local python_path = resolve_python_path(config.root_dir)
+      config.settings.python.pythonPath = python_path
+      config.settings.basedpyright = config.settings.basedpyright or {}
+      config.settings.basedpyright.analysis = config.settings.basedpyright.analysis or {}
+      config.settings.basedpyright.analysis.extraPaths = python_site_packages(python_path)
+    end,
     settings = {
-      python = {
-        venvPath = '.', -- dir that holds venv(s)
-        venv = '.venv',
+      basedpyright = {
         analysis = {
           autoSearchPaths = true,
           diagnosticMode = 'workspace',

@@ -95,7 +95,6 @@ return {
       vim.cmd 'colorscheme vague'
     end,
   },
-
   -- Statusline
   {
     'nvim-lualine/lualine.nvim',

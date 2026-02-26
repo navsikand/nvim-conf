@@ -100,13 +100,17 @@ return {
       --
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
-      local ensure_installed = vim.tbl_keys(servers.servers)
+      local lsp_servers = vim.tbl_filter(function(server)
+        return server ~= 'pyright'
+      end, vim.tbl_keys(servers.servers))
+
+      local ensure_installed = vim.deepcopy(lsp_servers)
       vim.list_extend(ensure_installed, {
         'stylua',
         'ruff',
         'black',
         'isort',
-        'pyright',
+        'basedpyright',
         'debugpy',
       })
 
@@ -115,11 +119,16 @@ return {
       }
 
       require('mason-lspconfig').setup {
-        ensure_installed = vim.tbl_keys(servers.servers), -- which LSPs to install
+        ensure_installed = lsp_servers, -- which LSPs to install
         automatic_installation = true, -- install any you configure
-        automatic_enable = true, -- satisfy the typechecker
+        automatic_enable = {
+          exclude = { 'pyright' },
+        },
         handlers = {
           function(server_name) -- your existing handler
+            if server_name == 'pyright' then
+              return
+            end
             local opts = servers.servers[server_name] or {}
             opts.capabilities = vim.tbl_deep_extend('force', {}, settings.capabilities, opts.capabilities or {})
             require('lspconfig')[server_name].setup(opts)
